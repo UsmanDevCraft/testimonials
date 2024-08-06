@@ -10,7 +10,7 @@ const Newspace = () => {
     const fetchNewspace = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5000/api/newspace/createspace", {
+            const response = await fetch("https://testimonial-backend.vercel.app/api/newspace/createspace", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -15,7 +15,7 @@ const Addreview = () => {
             // console.log("Space Token:", spaceToken); // Debug log
 
 
-            const response = await fetch("http://localhost:5000/api/reviews/createreview", {
+            const response = await fetch("https://testimonial-backend.vercel.app/api/reviews/createreview", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -13,7 +13,7 @@ const SpacePage = () => {
         // console.log("Space Token:", spaceToken); // Debug log
 
 
-        const response = await fetch("http://localhost:5000/api/reviews/getreview", {
+        const response = await fetch("https://testimonial-backend.vercel.app/api/reviews/getreview", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

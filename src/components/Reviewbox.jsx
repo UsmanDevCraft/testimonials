@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Reviewbox = ({ reviews }) => {
 
     const deleteReview = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/reviews/deletereview/${id}`, {
+        const response = await fetch(`https://testimonial-backend.vercel.app/api/reviews/deletereview/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

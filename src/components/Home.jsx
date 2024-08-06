@@ -8,7 +8,7 @@ const Home = () => {
 
   const fetchSpaces = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/newspace/getspace", {
+      const response = await fetch("https://testimonial-backend.vercel.app/api/newspace/getspace", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
