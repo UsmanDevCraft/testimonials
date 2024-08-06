@@ -38,7 +38,7 @@ const Addreview = () => {
                 alert(json.error)
             } else {
                 alert("Review Sent Successfully.")
-                navigate("/home");
+                // navigate("/home");
             }
 
         } catch (error) {
