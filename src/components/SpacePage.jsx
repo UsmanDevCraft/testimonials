@@ -43,7 +43,7 @@ const SpacePage = () => {
   return (
     <div className='container'>
       <h6 className='mt-5'>To get your reviews from clients, forward this url to them.</h6>
-      <Link target='_main' to="/addreview">Give me Review</Link>
+      <Link to="/addreview">Give me Review</Link>
 
       <div className='d-flex justify-content-center flex-wrap gap-3 my-3'>
         <Reviewbox reviews={reviews} />
