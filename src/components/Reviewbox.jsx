@@ -26,7 +26,7 @@ const Reviewbox = ({ reviews }) => {
 
   return (
     <>
-        {reviews && reviews.map((review, index)=>{
+        {reviews && reviews.length > 0 ? ( reviews.map((review, index)=>{
             return (
                 <div key={index}>
                     <div className="card" style={{width: "18rem"}}>
@@ -57,7 +57,7 @@ const Reviewbox = ({ reviews }) => {
                     </div>
                 </div>
             )
-        })}
+        })) : <h6>No Reviews available to show.</h6>}
     </>
   )
 }

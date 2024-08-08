@@ -27,7 +27,9 @@ const Newspace = () => {
             if(json.error){
                 alert("Space token not found, please try another way.")
             } else {
-                localStorage.setItem("spaceToken", json.spaceToken);
+                localStorage.setItem("spaceToken", json.savedSpace.spaceToken);
+                // console.log({"space token for new space is": json.savedSpace.spaceToken})
+                // console.log(json.savedSpace.spaceToken)
             }
 
         } catch (error) {

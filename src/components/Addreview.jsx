@@ -7,11 +7,11 @@ const Addreview = () => {
     const { review, name, email } = data;
     const navigate = useNavigate();
 
-    const fetchReview = async () => {
-
+    const fetchReview = async (e) => {
+        e.preventDefault();
         try {
 
-            const spaceToken = localStorage.getItem("spaceToken");
+            // const spaceToken = localStorage.getItem("spaceToken");
             // console.log("Space Token:", spaceToken); // Debug log
 
 
@@ -20,7 +20,7 @@ const Addreview = () => {
                 headers: {
                     "Content-Type": "application/json",
                     "auth-token": localStorage.getItem("token"),
-                    "space-token": spaceToken,
+                    "space-token": localStorage.getItem("spaceToken"),
                 },
                 body: JSON.stringify({
                     review,
@@ -29,16 +29,17 @@ const Addreview = () => {
                 })
             });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            // if (!response.ok) {
+            //     throw new Error(`HTTP error! status: ${response.status}`);
+            // }
 
             const json = await response.json();
+            // console.log(json)
             if(json.error){
                 alert(json.error)
             } else {
                 alert("Review Sent Successfully.")
-                // navigate("/home");
+                navigate("/home");
             }
 
         } catch (error) {
@@ -53,7 +54,7 @@ const Addreview = () => {
   return (
     <div className='container'>
         <h1 className='mt-5'>Please write your review here.</h1>
-        <form onSubmit={fetchReview}>
+        <form onSubmit={(e)=>{fetchReview(e)}}>
             <div className="mb-3">
                 <label htmlFor="review" className="form-label">Review<code>*</code></label>
                 <input type="text" className="form-control" id="review" name='review' onChange={onChange}/>
