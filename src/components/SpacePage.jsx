@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Reviewbox from './Reviewbox';
 
 const SpacePage = () => {
+
+  // Retrieve the authToken from localStorage
+  const authToken = localStorage.getItem("token");
+  // Retrieve the spaceToken from localStorage
+  const spaceToken = localStorage.getItem("spaceToken");
+
+  // Create the URL with the spaceToken
+  // const reviewUrl = `https://client-testimonial.vercel.app/?spaceToken=${spaceToken}`;
+  const reviewUrl = `https://client-testimonial.vercel.app/?spaceToken=${encodeURIComponent(spaceToken)}&authToken=${encodeURIComponent(authToken)}`;
 
   const [ reviews, setReviews] = useState([]);
 
@@ -53,7 +62,9 @@ const SpacePage = () => {
   return (
     <div className='container'>
       <h6 className='mt-5'>To get your reviews from clients, forward this url to them.</h6>
-      <Link to="/addreview">Give me Review</Link>
+      {/* <Link to="/addreview">Give me Review</Link> */}
+      {/* <a href='https://client-testimonial.vercel.app/' target='_main'>Give me Review</a> */}
+      <a href={reviewUrl} target='_blank' rel='noopener noreferrer'>Give me Review</a>
 
       {loader ?  (
         <div className="container mt-5 d-flex justify-content-center overflow-hidden">
