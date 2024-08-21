@@ -18,16 +18,16 @@ const Spacebox = ({ spaces }) => {
         // console.log(space);
         return (
             <div key={index}  onClick={() => onClick(space)} style={{cursor: "pointer"}}>
-                <div className="card" style={{width: "18rem"}}>
+                <div className="card spaceStyle" style={{width: "18rem"}}>
                 <div className="card-body">
                     <h5 className="card-title">{space.spaceName}</h5>
-                    <h6 className="card-subtitle mb-2 text-body-secondary">{space.headerTitle}</h6>
-                    <p className="card-subtitle mb-2 text-body-secondary">{space.customMessage}</p>
+                    <h6 className="card-subtitle mb-2">{space.headerTitle}</h6>
+                    <p className="card-subtitle mb-2">{space.customMessage}</p>
                 </div>
                 </div>
             </div>
         )
-      })) : <h6>No spaces available</h6>}
+      })) : <div className='noSpaceImage'><img src="https://testimonial.to/static/media/no-message.18de8749.svg" height="100px" width="100px" alt="SpaceImg" /><p>No space yet, add a new one?</p></div>}
     </>
   )
 }

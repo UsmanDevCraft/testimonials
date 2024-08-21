@@ -1,0 +1,107 @@
+body{
+    background-color: #151719;
+    color: #EBF1F5;
+}
+
+.noSpaceImage{
+    display: flex;
+    flex-direction: column;
+    color: #9BA9B4;
+    font-size: large;
+}
+
+.noSpaceImage img{
+    width: 13rem;
+    height: 13rem;
+}
+
+.modalStyle{
+    background-color: #151719;
+    color: #EBF1F5;
+}
+
+.overviewStyle{
+    background-color: #25282C;
+    color: #C5D2DC;
+}
+
+.overviewStyle h6{
+    background-color: #25282C;
+    color: #EBF1F5;
+}
+
+.spaceStyle{
+    background-color: #25282C;
+    color: #EBF1F5;
+}
+
+.reviewStyle{
+    background-color: #25282C;
+    color: #EBF1F5;
+    padding: 1rem 1rem 3.5rem 1rem;
+}
+
+@media screen and (max-width: 660px) {
+    .cardResponsive{
+        width: 28rem !important;
+    }
+}
+@media screen and (max-width: 500px) {
+    .cardResponsive{
+        width: 22rem !important;
+    }
+}
+@media screen and (max-width: 390px) {
+    .cardResponsive{
+        width: 18rem !important;
+    }
+}
+
+
+/* CSS FOR MAINPAGE.JSX */
+.mainPageHead{
+    color: #EBF1F5;
+}
+.mainPageHeadBlue{
+    color: #5D5DFF;
+}
+.mainPageText{
+    color: #9BA9B4;
+}
+.tryButtonSimple{
+    background-color: #5D5DFF;
+    color: #EBF1F5;
+}
+.tryButtonSimple:hover{
+    background-color: #5D5DFF;
+    color: #EBF1F5;
+}
+.tryButton{
+    background-color: #5D5DFF;
+    color: #EBF1F5;
+}
+.tryButton:hover{
+    scale: 1.1;
+    transition: 0.5s;
+    background-color: #5D5DFF;
+    color: #EBF1F5;
+}
+
+.bg_card_color{
+    background-color: #151719;
+    color: #ffffff;
+}
+.imgCard{
+    width: 50% !important;
+    height: 50vh !important;
+}
+.imgCard img{
+    height: 100% !important;
+    background-color: #151719;
+}
+@media screen and (max-width: 768px) {
+    .imgCard{
+        width: 100% !important;
+        height: 70% !important
+    }
+}
