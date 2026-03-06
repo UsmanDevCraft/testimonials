@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCreateSpace } from "../hooks/app/useCreateSpace";
 
 const Newspace = () => {
   const [data, setData] = useState({
@@ -7,39 +8,12 @@ const Newspace = () => {
     headerTitle: "",
     customMessage: "",
   });
-  const { spaceName, headerTitle, customMessage } = data;
   const navigate = useNavigate();
+  const { mutate } = useCreateSpace();
 
   const fetchNewspace = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(
-        "https://testimonial-backend.vercel.app/api/newspace/createspace",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token"),
-          },
-          body: JSON.stringify({
-            spaceName,
-            headerTitle,
-            customMessage,
-          }),
-        },
-      );
-      const json = await response.json();
-      // console.log(json);
-      if (json.error) {
-        alert("Space token not found, please try another way.");
-      } else {
-        localStorage.setItem("spaceToken", json.savedSpace.spaceToken);
-        // console.log({"space token for new space is": json.savedSpace.spaceToken})
-        // console.log(json.savedSpace.spaceToken)
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    mutate(data);
   };
 
   const onChange = (e) => {

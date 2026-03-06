@@ -2,7 +2,7 @@ import { fetcher } from "../../utils/fetcher";
 import { APP } from "../../routes/routes";
 
 // POST Space
-export const creatSpace = (payload) => {
+export const createSpace = (payload) => {
   return fetcher(APP.SPACE.CREATE_SPACE, {
     method: "POST",
     body: JSON.stringify(payload),

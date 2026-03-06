@@ -5,309 +5,177 @@ import { IoCheckmarkDoneCircle } from "react-icons/io5";
 const MainPage = () => {
   return (
     <>
-      <div className="container mt-5 pt-5">
-        <p className="text-center fs-1 mainPageHead fw-bold lh-1">
-          Get testimonials from your
-        </p>
-        <p className="text-center fs-1 mainPageHead fw-bold lh-1">
-          customers with ease
-        </p>
-        <p className="text-center lh-1 fs-5 mainPageText mt-5">
-          Collecting testimonials is hard, we get it! So we built Testimonial.
-          In minutes, you can collect text
-        </p>
-        <p className="text-center lh-1 fs-5 mainPageText">
-          and video testimonials from your customers with no need for a
-          developer or website hosting.
-        </p>
-        <div className="d-flex justify-content-center">
-          <Link to="/home">
-            <button className="btn tryButton fw-semibold my-5">
-              Try FREE now
-            </button>
-          </Link>
-        </div>
-      </div>
-
-      <div className="container">
-        <hr />
-      </div>
-
-      <div className="container mt-5 pt-5">
-        <p className="text-center fs-1 mainPageHead fw-bold lh-1">
-          Add testimonials to your website
-        </p>
-        <p className="text-center fs-1 mainPageHead fw-bold lh-1">
-          with no coding!
-        </p>
-        <p className="text-center lh-1 fs-5 mainPageText mt-5">
-          Copy and paste our HTML code to add the Wall Of Love (👉 full version)
-          to your website.
-        </p>
-        <Link
-          className="my-5 btn text-white fw-semibold d-flex justify-content-center align-items-center gap-2 fs-3"
-          to="/home"
-        >
-          <AiTwotoneLike />
-          Testimonial
-        </Link>
-      </div>
-
-      <div className="container">
-        <hr />
-      </div>
-
-      <div className="container mt-5 pt-5">
-        <p className="text-center fs-1 mainPageHead fw-bold lh-1">
-          Collect and display testimonials all in
-        </p>
-        <p className="text-center fs-1 mainPageHead fw-bold lh-1">
-          one solution
-        </p>
-      </div>
-
-      {/* ------------------ TESTIMONIAL #01 ------------------ */}
-      <div className="container">
-        <div data-aos="fade-right" className="card my-5 bg_card_color">
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center">
-            <div className="card-body col-md-4 order-md-1">
-              <p className="fs-4 mainPageHeadBlue fw-bold lh-1">
-                Quick to setup
-              </p>
-              <p className="fs-2 mainPageHead fw-bold lh-1">
-                A dedicated landing page
-              </p>
-              <p className="card-text fs-5 mainPageText">
-                Create a dedicated landing page for your business. Share the
-                page link easily via email, social media, or even SMS. Setup can
-                be done in two minutes.
-              </p>
-              <Link to="/home">
-                <button className="btn tryButtonSimple fw-semibold my-5">
-                  Try it for free
-                </button>
-              </Link>
-            </div>
-            <div className="card col-md-8 imgCard order-md-2">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2Flanding-page.png?alt=media&token=269a1a1c-4539-4d94-aa9e-ed0425eb1fce"
-                className="card-img-top"
-                alt=""
-              />
+      <div className="main-page">
+        {/* Hero Section */}
+        <section className="hero-section text-center">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-10">
+                <h1 className="display-3 fw-bold mb-4 gradient-text">
+                  Get testimonials from your <br />
+                  <span className="gradient-accent-text">
+                    customers with ease
+                  </span>
+                </h1>
+                <p
+                  className="lead fs-4 text-secondary mb-5 mx-auto"
+                  style={{ maxWidth: "800px" }}
+                >
+                  Collecting testimonials is hard, we get it! In minutes, you
+                  can collect text and video testimonials from your customers
+                  with no need for a developer or website hosting.
+                </p>
+                <div className="d-flex gap-3 justify-content-center">
+                  <Link
+                    to="/home"
+                    className="btn btn-primary-gradient btn-lg px-5 py-3"
+                  >
+                    Try FREE now
+                  </Link>
+                  <button className="btn btn-outline-light btn-lg px-5 py-3 border-secondary">
+                    View Demo
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      {/* ------------------ TESTIMONIAL #02 ------------------ */}
-      <div className="container">
-        <div data-aos="fade-right" className="card my-5 bg_card_color">
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center">
-            <div className="card-body col-md-4 order-md-2">
-              <p className="fs-4 mainPageHeadBlue fw-bold lh-1">
-                Easy to manage
-              </p>
-              <p className="fs-2 mainPageHead fw-bold lh-1">
-                A dashboard to manage all testimonials
-              </p>
-              <p className="card-text fs-5 mainPageText">
-                You will have a simple & clean dashboard to manage all
-                testimonials in one place. It&apos;s like your email inbox, but
-                it&apos;s designed for your social proof!
-              </p>
-              <Link to="/home">
-                <button className="btn tryButtonSimple fw-semibold my-5">
-                  Try it for free
-                </button>
-              </Link>
-            </div>
-            <div className="card col-md-8 imgCard order-md-1">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2FEasy%20to%20manage%20(1).png?alt=media&token=5d3ae5f2-e35b-4e35-8070-acde541c18ec"
-                className="card-img-top"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* ------------------ TESTIMONIAL #03 ------------------ */}
-      <div className="container">
-        <div data-aos="fade-right" className="card my-5 bg_card_color">
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center">
-            <div className="card-body col-md-4 order-md-1">
-              <p className="fs-4 mainPageHeadBlue fw-bold lh-1">
-                Track the metrics
-              </p>
-              <p className="fs-2 mainPageHead fw-bold lh-1">
-                Understand how video testimonials are performing
-              </p>
-              <p className="card-text fs-5 mainPageText">
-                Track the metrics from all embedded videos, help your marketing
-                team understand the performance at a glance, even promote the
-                best-performing videos to different marketing channels.
-              </p>
-              <p className="card-text fs-6 mainPageText">
-                * Available in the Ultimate plan
-              </p>
-              <Link to="/home">
-                <button className="btn tryButtonSimple fw-semibold my-5">
-                  Try it for free
-                </button>
-              </Link>
-            </div>
-            <div className="card col-md-8 imgCard order-md-2">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2Fmetrics.png?alt=media&token=c5aa1272-4d36-4f9f-8ee6-df660985e7e1"
-                className="card-img-top"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* ------------------ TESTIMONIAL #04 ------------------ */}
-      <div className="container">
-        <div data-aos="fade-right" className="card my-5 bg_card_color">
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center">
-            <div className="card-body col-md-4 order-md-2">
-              <p className="fs-4 mainPageHeadBlue fw-bold lh-1">
-                More social proof
-              </p>
-              <p className="fs-2 mainPageHead fw-bold lh-1">
-                Not only text and video testimonials
-              </p>
-              <p className="card-text fs-5 mainPageText">
-                If you have testimonials on social media (e.g. Twitter,
-                LinkedIn, TikTok etc), video hosting platforms (e.g. YouTube,
-                Vimeo), and other review sites (e.g. G2, Google, Capterra, Yelp
-                etc), bring them all to your account. Testimonial helps you
-                manage all your social proof in a single place!
-              </p>
-              <Link to="/home">
-                <button className="btn tryButtonSimple fw-semibold my-5">
-                  Try it for free
-                </button>
-              </Link>
-            </div>
-            <div className="card col-md-8 imgCard order-md-1">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2Fmore-social-proof.png?alt=media&token=83a1a3e9-449d-457d-80fb-0cfa55484700"
-                className="card-img-top"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* ------------------ TESTIMONIAL #05 ------------------ */}
-      <div className="container">
-        <div data-aos="fade-right" className="card my-5 bg_card_color">
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center">
-            <div className="card-body col-md-4 order-md-1">
-              <p className="fs-4 mainPageHeadBlue fw-bold lh-1">
-                Embed the Wall of Love
-              </p>
-              <p className="fs-2 mainPageHead fw-bold lh-1">
-                The best testimonials all in one place
-              </p>
-              <p className="card-text fs-5 mainPageText">
-                Treat the Wall of Love as the place to showcase all your
-                favorite testimonials. You can embed it to your website in under
-                a minute. No coding knowledge required!
-              </p>
-              <Link to="/home">
-                <button className="btn tryButtonSimple fw-semibold my-5">
-                  Try it for free
-                </button>
-              </Link>
-            </div>
-            <div className="card col-md-8 imgCard order-md-2">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2Fwall-of-love.png?alt=media&token=74e955e5-a21b-4cc6-ab05-d497b7fb313a"
-                className="card-img-top"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* ------------------ TESTIMONIAL #06 ------------------ */}
-      <div className="container">
-        <div data-aos="fade-right" className="card my-5 bg_card_color">
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center">
-            <div className="card-body col-md-4 order-md-2">
-              <p className="fs-4 mainPageHeadBlue fw-bold lh-1">
-                Embed a single video testimonial
-              </p>
-              <p className="fs-2 mainPageHead fw-bold lh-1">
-                Ad-free hosting for each video
-              </p>
-              <p className="card-text fs-5 mainPageText">
-                For the video testimonial, you can embed it directly on your own
-                website like this 👈. You don&apos;t need to use any 3rd-party
-                Ad-free hosting service, e.g. Wistia, Vimeo.
-              </p>
-              <Link to="/home">
-                <button className="btn tryButtonSimple fw-semibold my-5">
-                  Try it for free
-                </button>
-              </Link>
-            </div>
-            <div className="card col-md-8 imgCard order-md-1">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2Fmetrics.png?alt=media&token=c5aa1272-4d36-4f9f-8ee6-df660985e7e1"
-                className="card-img-top"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+        </section>
 
-      <div className="container mt-5 pt-5">
-        <p className="text-center fs-1 mainPageHead fw-bold lh-1">
-          Integrate with any platform
-        </p>
-        <p className="text-center lh-1 fs-5 mainPageText mt-5">
-          We built the ultimate tool for showcasing your satisfied customers.
-          With 3-lines of HTML code,
-        </p>
-        <p className="text-center lh-1 fs-5 mainPageText">
-          you can embed all your testimonials to any platform!
-        </p>
-      </div>
+        {/* Social Proof Stats */}
+        <section className="py-5 border-top border-bottom border-secondary border-opacity-10 mb-5">
+          <div className="container">
+            <div className="row text-center">
+              <div className="col-md-4">
+                <h3 className="fw-bold mb-1">10k+</h3>
+                <p className="text-secondary small">Happy Customers</p>
+              </div>
+              <div className="col-md-4">
+                <h3 className="fw-bold mb-1">500k+</h3>
+                <p className="text-secondary small">Testimonials Collected</p>
+              </div>
+              <div className="col-md-4">
+                <h3 className="fw-bold mb-1">99.9%</h3>
+                <p className="text-secondary small">Uptime Guaranteed</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <div className="container mt-5 pt-5">
-        <p className="text-center fs-1 mainPageHead fw-bold lh-1">
-          Ready to collect testimonials?
-        </p>
-        <p className="text-center lh-1 fs-5 mainPageText mt-5">
-          We are loved by Fortune 500 companies, early-stage startups, marketing
-        </p>
-        <p className="text-center lh-1 fs-5 mainPageText">
-          agencies, real estate agents, freelancers, and many more. Your
-          customers&apos;
-        </p>
-        <p className="text-center lh-1 fs-5 mainPageText">
-          testimonials are the best social proof you can get! Get started now 👇
-        </p>
-        <div className="d-flex gap-5 justify-content-center">
-          <p className="d-flex align-items-center gap-3 fs-6 mainPageHead fw-bold lh-1">
-            <IoCheckmarkDoneCircle className="fs-4" />
-            No coding skill required.
-          </p>
-          <p className="d-flex align-items-center gap-3 fs-6 mainPageHead fw-bold lh-1">
-            <IoCheckmarkDoneCircle className="fs-4" />
-            Start in under 2 minutes.
-          </p>
-        </div>
-        <div className="d-flex justify-content-center">
-          <Link to="/home">
-            <button className="btn tryButton fw-semibold my-5">
-              Get started with FREE credits
-            </button>
-          </Link>
-        </div>
+        {/* Features Section */}
+        <section className="pb-5">
+          <div className="container">
+            <div className="text-center mb-5">
+              <h2 className="display-5 fw-bold mb-3 gradient-text">
+                Collect and display testimonials all in one solution
+              </h2>
+              <p className="text-secondary fs-5">
+                Everything you need to build trust with your audience
+              </p>
+            </div>
+
+            <div className="features-grid">
+              {/* Feature 1 */}
+              <div className="card-premium feature-card">
+                <div className="feature-icon">
+                  <IoCheckmarkDoneCircle />
+                </div>
+                <h4 className="fw-bold mb-3">Quick to setup</h4>
+                <p className="text-secondary mb-4">
+                  Create a dedicated landing page for your business. Share the
+                  page link easily via email, social media, or even SMS.
+                </p>
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2Flanding-page.png?alt=media&token=269a1a1c-4539-4d94-aa9e-ed0425eb1fce"
+                  className="img-fluid rounded-3 border border-secondary border-opacity-10 mt-auto"
+                  alt="Landing Page"
+                />
+              </div>
+
+              {/* Feature 2 */}
+              <div className="card-premium feature-card">
+                <div className="feature-icon">
+                  <AiTwotoneLike />
+                </div>
+                <h4 className="fw-bold mb-3">Easy to manage</h4>
+                <p className="text-secondary mb-4">
+                  A simple & clean dashboard to manage all testimonials in one
+                  place. It&apos;s like your email inbox, but for social proof!
+                </p>
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2FEasy%20to%20manage%20(1).png?alt=media&token=5d3ae5f2-e35b-4e35-8070-acde541c18ec"
+                  className="img-fluid rounded-3 border border-secondary border-opacity-10 mt-auto"
+                  alt="Management Dashboard"
+                />
+              </div>
+
+              {/* Feature 3 */}
+              <div className="card-premium feature-card">
+                <div className="feature-icon">
+                  <IoCheckmarkDoneCircle />
+                </div>
+                <h4 className="fw-bold mb-3">Track metrics</h4>
+                <p className="text-secondary mb-4">
+                  Track the metrics from all embedded videos, help your
+                  marketing team understand performance at a glance.
+                </p>
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/assets%2Ffeatures%2Fmetrics.png?alt=media&token=c5aa1272-4d36-4f9f-8ee6-df660985e7e1"
+                  className="img-fluid rounded-3 border border-secondary border-opacity-10 mt-auto"
+                  alt="Metrics Tracking"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Wall of Love Teaser */}
+        <section className="py-5 bg-card bg-opacity-50">
+          <div className="container text-center py-5">
+            <AiTwotoneLike className="display-1 text-primary mb-4 opacity-50" />
+            <h2 className="display-4 fw-bold mb-4">Embed the Wall of Love</h2>
+            <p className="lead text-secondary mb-5">
+              Showcase your best testimonials in a stunning grid on your website
+              with no coding.
+            </p>
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                <div className="card-premium p-4 border-primary border-opacity-25">
+                  <p className="fs-5 mb-0 italic">
+                    &quot;Wall of Love is the best thing that happened to our
+                    marketing page. Conversion increased by 40%!&quot;
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-5 my-5">
+          <div className="container text-center">
+            <div className="card-premium p-5 py-5 gradient-bg-alt">
+              <h2 className="display-5 fw-bold mb-4">
+                Ready to collect testimonials?
+              </h2>
+              <p
+                className="text-secondary fs-5 mb-5 mx-auto"
+                style={{ maxWidth: "600px" }}
+              >
+                Join thousands of companies using Testimonial to build social
+                proof and grow their business.
+              </p>
+              <div className="d-flex flex-column flex-md-row gap-3 justify-content-center align-items-center">
+                <Link
+                  to="/home"
+                  className="btn btn-primary-gradient btn-lg px-5"
+                >
+                  Get started for free
+                </Link>
+                <span className="text-secondary">No credit card required.</span>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

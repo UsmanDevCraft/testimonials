@@ -1,63 +1,15 @@
-import { useEffect, useState } from "react";
-// import { Link } from 'react-router-dom';
 import Reviewbox from "../../components/Reviewbox";
+import { useGetReviews } from "../../hooks/app/useReviews";
 
 const SpacePage = () => {
-  // Retrieve the authToken from localStorage
   const authToken = localStorage.getItem("token");
-  // Retrieve the spaceToken from localStorage
   const spaceToken = localStorage.getItem("spaceToken");
+
+  const { data: reviews, isLoading } = useGetReviews();
 
   // Create the URL with the spaceToken
   // const reviewUrl = `https://client-testimonial.vercel.app/?spaceToken=${spaceToken}`;
   const reviewUrl = `https://client-testimonial.vercel.app/?spaceToken=${encodeURIComponent(spaceToken)}&authToken=${encodeURIComponent(authToken)}`;
-
-  const [reviews, setReviews] = useState([]);
-
-  const [loader, setLoader] = useState(false);
-
-  const fetchReviews = async () => {
-    try {
-      setLoader(true);
-
-      // const spaceToken = localStorage.getItem("spaceToken");
-      // console.log("Space Token for get review is:", localStorage.getItem("spaceToken")); // Debug log
-
-      const response = await fetch(
-        "https://testimonial-backend.vercel.app/api/reviews/getreview",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token"),
-            "space-token": localStorage.getItem("spaceToken"),
-          },
-        },
-      );
-
-      // if (!response.ok) {
-      //   throw new Error(`HTTP error! status: ${response.status}`);
-      // }
-
-      const json = await response.json();
-      // console.log(spaceId);
-      // console.log(json);
-
-      if (json.error) {
-        alert(json.error);
-      }
-
-      setReviews(json);
-
-      setLoader(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchReviews();
-  }, []);
 
   return (
     <div className="container">
@@ -70,7 +22,7 @@ const SpacePage = () => {
         Give me Review
       </a>
 
-      {loader ? (
+      {isLoading ? (
         <div className="container mt-5 d-flex justify-content-center overflow-hidden">
           <div className="spinner-border text-primary" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -78,7 +30,7 @@ const SpacePage = () => {
         </div>
       ) : (
         <div className="d-flex justify-content-center flex-wrap gap-3 my-3">
-          <Reviewbox reviews={reviews} />
+          <Reviewbox reviews={reviews?.reviews} />
         </div>
       )}
     </div>
