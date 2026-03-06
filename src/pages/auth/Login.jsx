@@ -1,39 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../hooks/auth/useLogin";
 
 const Login = () => {
   const [creds, setCreds] = useState({ name: "", email: "", password: "" });
-  const { name, email, password } = creds;
   const navigate = useNavigate();
+  const { mutate: loginMutate } = useLogin();
 
   const fetchLogin = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(
-        "https://testimonial-backend.vercel.app/api/auth/loginuser",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-          }),
-        },
-      );
-      const json = await response.json();
-      if (json.error) {
-        alert(json.error);
-      } else {
-        localStorage.setItem("token", json.authToken);
-        navigate("/home");
-        alert("Login was Successfull, HAPPY HACKING!");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    loginMutate(creds);
   };
 
   const onChange = (e) => {

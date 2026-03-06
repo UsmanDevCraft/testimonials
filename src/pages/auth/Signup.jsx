@@ -1,39 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSignup } from "../../hooks/auth/useSignup";
 
 const Signup = () => {
   const [creds, setCreds] = useState({ name: "", email: "", password: "" });
-  const { name, email, password } = creds;
   const navigate = useNavigate();
+  const { mutate: signupMutate } = useSignup();
 
   const fetchUser = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(
-        "https://testimonial-backend.vercel.app/api/auth/createuser",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-          }),
-        },
-      );
-      const json = await response.json();
-      if (json.error) {
-        alert("Account already exists, try another please.");
-      } else {
-        localStorage.setItem("token", json.authToken);
-        navigate("/login");
-        alert("Account Signed In Successfully, Login to move further.");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    signupMutate(creds);
   };
 
   const onChange = (e) => {
