@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { AiTwotoneLike } from "react-icons/ai";
 
 const Navbar = () => {
@@ -28,23 +28,19 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link
-                  className="nav-link nav-link-custom me-3 active"
-                  aria-current="page"
-                  to="/home"
-                >
+                <NavLink className="nav-link nav-link-custom me-3" to="/home">
                   Dashboard
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link nav-link-custom me-3" to="/login">
+                <NavLink className="nav-link nav-link-custom me-3" to="/login">
                   Login
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link nav-link-custom me-3" to="/signup">
+                <NavLink className="nav-link nav-link-custom me-3" to="/signup">
                   Signup
-                </Link>
+                </NavLink>
               </li>
             </ul>
             <div className="d-flex">

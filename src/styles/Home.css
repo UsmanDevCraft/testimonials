@@ -105,7 +105,9 @@ h4,
 }
 
 .nav-link-custom:hover,
-.nav-link-custom.active {
+.nav-link-custom.active,
+.navbar-nav .nav-link-custom.active,
+.navbar-nav .nav-link-custom:focus {
   color: var(--text-primary) !important;
 }
 
