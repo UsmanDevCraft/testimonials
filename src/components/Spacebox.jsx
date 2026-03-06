@@ -5,8 +5,6 @@ const Spacebox = ({ spaces }) => {
 
   const onClick = (space) => {
     localStorage.setItem("spaceToken", space.spaceToken);
-    // console.log(localStorage.getItem("spaceToken"))
-    // console.log("Selected space token:", space.spaceToken);
     navigate("/spacepage");
   };
 
@@ -14,7 +12,6 @@ const Spacebox = ({ spaces }) => {
     <>
       {spaces && spaces.length > 0 ? (
         spaces.map((space, index) => {
-          // console.log(space);
           return (
             <div
               key={index}
@@ -22,33 +19,64 @@ const Spacebox = ({ spaces }) => {
               className="col-md-6 col-lg-4"
               style={{ cursor: "pointer" }}
             >
-              <div className="card-premium h-100 p-4">
+              <div className="card-premium h-100 p-4 shadow-sm border-0 position-relative glass-card">
                 <div className="d-flex justify-content-between align-items-start mb-3">
-                  <h5 className="fw-bold mb-0">{space.spaceName}</h5>
-                  <span className="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-2 py-1">
+                  <h5 className="fw-bold mb-0 text-white">{space.spaceName}</h5>
+                  <span className="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-10 px-2 py-1 small rounded-pill">
                     Active
                   </span>
                 </div>
-                <h6 className="text-secondary small mb-3">
+                <h6 className="text-secondary small mb-3 fw-bold opacity-75">
                   {space.headerTitle}
                 </h6>
-                <p className="text-secondary mb-0 small text-truncate-2">
-                  {space.customMessage ||
-                    "No custom message set for this space."}
-                </p>
+                <div className="bg-white bg-opacity-5 p-3 rounded-3 mb-2">
+                  <p
+                    className="text-secondary mb-0 small text-truncate-2"
+                    style={{ fontStyle: "italic" }}
+                  >
+                    {space.customMessage ||
+                      "No custom message set for this space."}
+                  </p>
+                </div>
+                <div className="mt-3 d-flex align-items-center gap-2">
+                  <div
+                    className="rounded-circle bg-success shadow-success"
+                    style={{ width: "8px", height: "8px" }}
+                  ></div>
+                  <span className="text-secondary small opacity-50">
+                    Collecting reviews
+                  </span>
+                </div>
               </div>
             </div>
           );
         })
       ) : (
-        <div className="noSpaceImage">
-          <img
-            src="https://testimonial.to/static/media/no-message.18de8749.svg"
-            height="100px"
-            width="100px"
-            alt="SpaceImg"
-          />
-          <p>No space yet, add a new one?</p>
+        <div className="col-12 mt-4">
+          <div className="card-premium p-5 text-center border-dashed bg-transparent shadow-none">
+            <div className="mb-4">
+              <div
+                className="mx-auto bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center"
+                style={{ width: "80px", height: "80px", fontSize: "2.5rem" }}
+              >
+                🚀
+              </div>
+            </div>
+            <h4 className="fw-bold mb-2 text-white">Your Workspace is Empty</h4>
+            <p
+              className="text-secondary mb-5 mx-auto opacity-75"
+              style={{ maxWidth: "420px" }}
+            >
+              Ready to grow? Create your first space and start collecting
+              powerful testimonials that build trust and drive conversions.
+            </p>
+            <button
+              onClick={() => navigate("/newspace")}
+              className="btn btn-primary-gradient px-5 py-3 rounded-pill fw-bold shadow-lg"
+            >
+              Launch Your First Space
+            </button>
+          </div>
         </div>
       )}
     </>
