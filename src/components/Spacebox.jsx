@@ -19,14 +19,23 @@ const Spacebox = ({ spaces }) => {
             <div
               key={index}
               onClick={() => onClick(space)}
+              className="col-md-6 col-lg-4"
               style={{ cursor: "pointer" }}
             >
-              <div className="card spaceStyle" style={{ width: "18rem" }}>
-                <div className="card-body">
-                  <h5 className="card-title">{space.spaceName}</h5>
-                  <h6 className="card-subtitle mb-2">{space.headerTitle}</h6>
-                  <p className="card-subtitle mb-2">{space.customMessage}</p>
+              <div className="card-premium h-100 p-4">
+                <div className="d-flex justify-content-between align-items-start mb-3">
+                  <h5 className="fw-bold mb-0">{space.spaceName}</h5>
+                  <span className="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-2 py-1">
+                    Active
+                  </span>
                 </div>
+                <h6 className="text-secondary small mb-3">
+                  {space.headerTitle}
+                </h6>
+                <p className="text-secondary mb-0 small text-truncate-2">
+                  {space.customMessage ||
+                    "No custom message set for this space."}
+                </p>
               </div>
             </div>
           );

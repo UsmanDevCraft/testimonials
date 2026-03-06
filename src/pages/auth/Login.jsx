@@ -21,44 +21,74 @@ const Login = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center">
-      <div>
-        <h1 className="mt-5">Welcome to Login Page.</h1>
+    <div className="container py-5 mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-5">
+          <div className="card-premium p-5 shadow-lg">
+            <h1 className="display-6 fw-bold mb-2 gradient-text">
+              Welcome Back
+            </h1>
+            <p className="text-secondary mb-5">
+              Enter your credentials to access your dashboard.
+            </p>
 
-        <form onSubmit={fetchLogin}>
-          <div className="mb-3 mt-3">
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              aria-describedby="emailHelp"
-              onChange={onChange}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              onChange={onChange}
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+            <form onSubmit={fetchLogin}>
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="form-label text-secondary small fw-bold"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  className="form-control form-control-custom"
+                  id="email"
+                  name="email"
+                  placeholder="name@example.com"
+                  onChange={onChange}
+                  required
+                />
+              </div>
+              <div className="mb-5">
+                <label
+                  htmlFor="password"
+                  className="form-label text-secondary small fw-bold"
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control form-control-custom"
+                  id="password"
+                  name="password"
+                  placeholder="••••••••"
+                  onChange={onChange}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary-gradient w-100 py-3 mb-4"
+              >
+                Sign In
+              </button>
+            </form>
 
-        <p className="mt-3" style={{ cursor: "pointer" }} onClick={onClick}>
-          <code>Don&apos;t have an account, click here to signup.</code>
-        </p>
+            <div className="text-center">
+              <p className="text-secondary small mb-0">
+                Don&apos;t have an account?{" "}
+                <span
+                  className="text-primary fw-bold"
+                  style={{ cursor: "pointer" }}
+                  onClick={onClick}
+                >
+                  Create an account
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

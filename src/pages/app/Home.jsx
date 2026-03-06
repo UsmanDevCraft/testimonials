@@ -73,68 +73,116 @@ const Home = () => {
 
   return (
     <>
-      <div className="container pb-5">
-        <h1 className="mt-3">Welcome to Your Dashboard!</h1>
+      <div className="dashboard-container py-5">
+        <div className="container">
+          <header className="d-flex justify-content-between align-items-center mb-5">
+            <div>
+              <h1 className="display-5 fw-bold gradient-text mb-2">
+                Welcome Back!
+              </h1>
+              <p className="text-secondary fs-5 mb-0">
+                Manage your spaces and testimonials here.
+              </p>
+            </div>
+            <Link to="/newspace">
+              <button className="btn btn-primary-gradient d-flex gap-2 align-items-center">
+                <FaPlus />
+                <span>Create New Space</span>
+              </button>
+            </Link>
+          </header>
 
-        {/* ----------------- DIV FOR OVERVIEW ----------------- */}
-        <h1 className="mt-5">Overview</h1>
+          {/* Overview Stats */}
+          <section className="mb-5">
+            <h2 className="fs-4 fw-bold mb-4 opacity-75">Overview</h2>
+            <div className="row g-4">
+              <div className="col-md-4">
+                <div className="card-premium p-4 d-flex align-items-center gap-4">
+                  <div className="feature-icon mb-0 flex-shrink-0">
+                    <CgCamera />
+                  </div>
+                  <div>
+                    <p className="text-secondary small mb-1">Total Videos</p>
+                    <h3 className="fw-bold mb-0">0</h3>
+                  </div>
+                </div>
+              </div>
 
-        <div className="container d-flex gap-4 justify-content-center mt-5 flex-wrap">
-          <div className="card overviewStyle" style={{ width: "18rem" }}>
-            <div className="card-body d-flex align-items-center gap-4">
-              <CgCamera className="fs-4" />
-              <span className="lh-1">
-                <h6>Videos</h6>
-                <p className="fw-bold fs-5">0</p>
+              <div className="col-md-4">
+                <div className="card-premium p-4 d-flex align-items-center gap-4">
+                  <div
+                    className="feature-icon mb-0 flex-shrink-0"
+                    style={{
+                      background: "rgba(0, 210, 255, 0.1)",
+                      color: "var(--accent-secondary)",
+                    }}
+                  >
+                    <FaRegSmile />
+                  </div>
+                  <div>
+                    <p className="text-secondary small mb-1">Video Credits</p>
+                    <h3 className="fw-bold mb-0">0</h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-4">
+                <div className="card-premium p-4 d-flex align-items-center gap-4">
+                  <div
+                    className="feature-icon mb-0 flex-shrink-0"
+                    style={{
+                      background: "rgba(255, 107, 107, 0.1)",
+                      color: "#ff6b6b",
+                    }}
+                  >
+                    <IoBagHandleSharp />
+                  </div>
+                  <div>
+                    <p className="text-secondary small mb-1">Current Plan</p>
+                    <h3 className="fw-bold mb-0">Free Plan</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Spaces Section */}
+          <section>
+            <div className="d-flex justify-content-between align-items-end mb-4">
+              <h2 className="fs-4 fw-bold mb-0 opacity-75">Your Spaces</h2>
+              <span className="text-secondary small">
+                {spaces.length} space(s) active
               </span>
             </div>
-          </div>
 
-          <div className="card overviewStyle" style={{ width: "18rem" }}>
-            <div className="card-body d-flex align-items-center gap-4">
-              <FaRegSmile className="fs-4" />
-              <span className="lh-1">
-                <h6>Video Credits</h6>
-                <p className="fw-bold fs-5">0</p>
-              </span>
-            </div>
-          </div>
-
-          <div className="card overviewStyle" style={{ width: "18rem" }}>
-            <div className="card-body d-flex align-items-center gap-4">
-              <IoBagHandleSharp className="fs-4" />
-              <span className="lh-1">
-                <h6>Plan</h6>
-                <p className="fw-bold fs-5">Free plan</p>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* ----------------- DIV FOR SPACES ----------------- */}
-        <div>
-          <h1 className="mt-5">Spaces</h1>
-
-          <div className="mt-5">
             {loader ? (
-              <div className="container d-flex justify-content-center overflow-hidden mt-5">
+              <div className="d-flex justify-content-center py-5">
                 <div className="spinner-border text-primary" role="status">
                   <span className="visually-hidden">Loading...</span>
                 </div>
               </div>
             ) : (
-              <div className="d-flex justify-content-center flex-wrap gap-3 my-3">
-                <Spacebox spaces={spaces} />
+              <div className="spaces-list mb-4">
+                {spaces.length > 0 ? (
+                  <div className="row g-4">
+                    <Spacebox spaces={spaces} />
+                  </div>
+                ) : (
+                  <div className="card-premium p-5 text-center border-dashed">
+                    <p className="text-secondary mb-4">
+                      You haven&apos;t created any spaces yet.
+                    </p>
+                    <Link
+                      to="/newspace"
+                      className="btn btn-outline-light border-secondary"
+                    >
+                      Create your first space
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
-
-            <Link to="/newspace">
-              <button className="btn tryButtonSimple d-flex gap-2 align-items-center">
-                <FaPlus />
-                Create a new space
-              </button>
-            </Link>
-          </div>
+          </section>
         </div>
       </div>
     </>
