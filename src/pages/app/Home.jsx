@@ -1,75 +1,15 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import Spacebox from "../../components/Spacebox";
 import { CgCamera } from "react-icons/cg";
 import { FaRegSmile } from "react-icons/fa";
 import { IoBagHandleSharp } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
+// import { useGetUserData } from "../../hooks/app/useGetUserData";
+import { useGetSpaces } from "../../hooks/app/useSpaces";
 
 const Home = () => {
-  const navigate = useNavigate();
-
-  const [loader, setLoader] = useState(false);
-
-  const [spaces, Setspaces] = useState([]);
-
-  const fetchSpaces = async () => {
-    try {
-      setLoader(true);
-      const response = await fetch(
-        "https://testimonial-backend.vercel.app/api/newspace/getspace",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token"),
-          },
-        },
-      );
-      const json = await response.json();
-      if (json.error) {
-        alert(json.error);
-      } else {
-        Setspaces(json.space);
-        // console.log({"json": json, "json space":json.space})
-        // localStorage.setItem("spaceToken", json.spaceToken);
-      }
-      setLoader(false);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const fetchUser = async () => {
-    try {
-      const response = await fetch(
-        "https://testimonial-backend.vercel.app/api/auth/getuser",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token"),
-          },
-        },
-      );
-      const json = await response.json();
-      // console.log(json);
-      // console.log(json.user);
-      if (!json.user) {
-        navigate("/login");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchSpaces();
-  }, []);
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  // const { data } = useGetUserData();
+  const { data: spacesData, isLoading } = useGetSpaces();
 
   return (
     <>
@@ -151,11 +91,11 @@ const Home = () => {
             <div className="d-flex justify-content-between align-items-end mb-4">
               <h2 className="fs-4 fw-bold mb-0 opacity-75">Your Spaces</h2>
               <span className="text-secondary small">
-                {spaces.length} space(s) active
+                {spacesData?.space?.length} space(s) active
               </span>
             </div>
 
-            {loader ? (
+            {isLoading ? (
               <div className="d-flex justify-content-center py-5">
                 <div className="spinner-border text-primary" role="status">
                   <span className="visually-hidden">Loading...</span>
@@ -163,9 +103,9 @@ const Home = () => {
               </div>
             ) : (
               <div className="spaces-list mb-4">
-                {spaces.length > 0 ? (
+                {spacesData?.space?.length > 0 ? (
                   <div className="row g-4">
-                    <Spacebox spaces={spaces} />
+                    <Spacebox spaces={spacesData?.space} />
                   </div>
                 ) : (
                   <div className="card-premium p-5 text-center border-dashed">

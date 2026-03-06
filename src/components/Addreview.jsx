@@ -1,49 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCreateReview } from "../hooks/app/useCreateReview";
 
 const Addreview = () => {
   const [data, setData] = useState({ review: "", name: "", email: "" });
-  const { review, name, email } = data;
-  const navigate = useNavigate();
+
+  const { mutate } = useCreateReview();
 
   const fetchReview = async (e) => {
     e.preventDefault();
-    try {
-      // const spaceToken = localStorage.getItem("spaceToken");
-      // console.log("Space Token:", spaceToken); // Debug log
-
-      const response = await fetch(
-        "https://testimonial-backend.vercel.app/api/reviews/createreview",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token"),
-            "space-token": localStorage.getItem("spaceToken"),
-          },
-          body: JSON.stringify({
-            review,
-            name,
-            email,
-          }),
-        },
-      );
-
-      // if (!response.ok) {
-      //     throw new Error(`HTTP error! status: ${response.status}`);
-      // }
-
-      const json = await response.json();
-      // console.log(json)
-      if (json.error) {
-        alert(json.error);
-      } else {
-        alert("Review Sent Successfully.");
-        navigate("/home");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    mutate(data);
   };
 
   const onChange = (e) => {
