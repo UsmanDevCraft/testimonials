@@ -94,7 +94,6 @@ h4,
 
 .card-premium:hover {
   border-color: rgba(93, 93, 255, 0.3);
-  transform: translateY(-4px);
 }
 
 .nav-link-custom {
