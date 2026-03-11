@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useCreateSpace } from "../hooks/app/useCreateSpace";
 
 const Newspace = () => {
@@ -8,7 +7,6 @@ const Newspace = () => {
     headerTitle: "",
     customMessage: "",
   });
-  const navigate = useNavigate();
   const { mutate } = useCreateSpace();
 
   const fetchNewspace = async (e) => {
@@ -18,10 +16,6 @@ const Newspace = () => {
 
   const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-  };
-
-  const onClick = () => {
-    navigate("/home");
   };
 
   return (
@@ -69,51 +63,9 @@ const Newspace = () => {
           />
         </div>
 
-        {/* ---------------- Code for modal ---------------- */}
-        <button
-          type="submit"
-          className="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
-        <div
-          className="modal fade"
-          id="exampleModal"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content modalStyle">
-              <div className="modal-header modalStyle">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">
-                  Modal title
-                </h1>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body">
-                Your Space is saved Successfully.
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  onClick={onClick}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </form>
     </div>
   );
