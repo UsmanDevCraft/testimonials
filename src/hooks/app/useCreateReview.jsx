@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { createReview } from "../../services/app/app.service";
 import { useNavigate } from "react-router-dom";
-import { useAlert } from "../../context/alertContext";
+import { useAlert } from "../../context/alertsContext";
 
 export const useCreateReview = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteReview } from "../../services/app/app.service";
-import { useAlert } from "../../context/alertContext";
+import { useAlert } from "../../context/alertsContext";
 
 export const useDeleteReview = () => {
   const queryClient = useQueryClient();

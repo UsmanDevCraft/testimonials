@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { createSpace } from "../../services/app/app.service";
-import { useAlert } from "../../context/alertContext";
+import { useAlert } from "../../context/alertsContext";
 
 export const useCreateSpace = () => {
   const { showAlert } = useAlert();
