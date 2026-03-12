@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/auth/useLogin";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-  const [creds, setCreds] = useState({ name: "", email: "", password: "" });
   const navigate = useNavigate();
   const { mutate: loginMutate } = useLogin();
+
+  const [creds, setCreds] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   const fetchLogin = async (e) => {
     e.preventDefault();
@@ -57,15 +60,24 @@ const Login = () => {
                 >
                   Password
                 </label>
-                <input
-                  type="password"
-                  className="form-control form-control-custom"
-                  id="password"
-                  name="password"
-                  placeholder="••••••••"
-                  onChange={onChange}
-                  required
-                />
+                <div className="d-flex">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    className="form-control form-control-custom"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                    onChange={onChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="btn btn-outline-secondary"
+                  >
+                    {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                  </button>
+                </div>
               </div>
               <button
                 type="submit"
