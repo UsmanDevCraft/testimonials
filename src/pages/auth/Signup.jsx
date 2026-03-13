@@ -2,21 +2,32 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/auth/useSignup";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { signupSchema } from "../../schemas/auth/signupSchema";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Signup = () => {
   const navigate = useNavigate();
   const { mutate: signupMutate } = useSignup();
 
-  const [creds, setCreds] = useState({ name: "", email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
-  const fetchUser = async (e) => {
-    e.preventDefault();
-    signupMutate(creds);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm({
+    resolver: yupResolver(signupSchema),
+    mode: "onBlur",
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
 
-  const onChange = (e) => {
-    setCreds({ ...creds, [e.target.name]: e.target.value });
+  const onSubmit = (data) => {
+    signupMutate(data);
   };
 
   const onClick = () => {
@@ -35,7 +46,7 @@ const Signup = () => {
               Sign up to start collecting testimonials today.
             </p>
 
-            <form onSubmit={fetchUser}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4">
                 <label
                   htmlFor="name"
@@ -45,13 +56,18 @@ const Signup = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control form-control-custom"
+                  className={`form-control form-control-custom ${
+                    errors.name ? "is-invalid" : ""
+                  }`}
                   id="name"
                   name="name"
                   placeholder="John Doe"
-                  onChange={onChange}
+                  {...register("name")}
                   required
                 />
+                {errors.name && (
+                  <div className="invalid-feedback">{errors.name.message}</div>
+                )}
               </div>
               <div className="mb-4">
                 <label
@@ -62,13 +78,18 @@ const Signup = () => {
                 </label>
                 <input
                   type="email"
-                  className="form-control form-control-custom"
+                  className={`form-control form-control-custom ${
+                    errors.email ? "is-invalid" : ""
+                  }`}
                   id="email"
                   name="email"
                   placeholder="name@example.com"
-                  onChange={onChange}
+                  {...register("email")}
                   required
                 />
+                {errors.email && (
+                  <div className="invalid-feedback">{errors.email.message}</div>
+                )}
               </div>
               <div className="mb-5">
                 <label
@@ -77,14 +98,16 @@ const Signup = () => {
                 >
                   Password
                 </label>
-                <div className="d-flex">
+                <div className="input-group">
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="form-control form-control-custom"
+                    className={`form-control form-control-custom ${
+                      errors.password ? "is-invalid" : ""
+                    }`}
                     id="password"
                     name="password"
                     placeholder="••••••••"
-                    onChange={onChange}
+                    {...register("password")}
                     required
                   />
                   <button
@@ -94,11 +117,17 @@ const Signup = () => {
                   >
                     {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                   </button>
+                  {errors.password && (
+                    <div className="invalid-feedback d-block">
+                      {errors.password.message}
+                    </div>
+                  )}
                 </div>
               </div>
               <button
                 type="submit"
                 className="btn btn-primary-gradient w-100 py-3 mb-4"
+                disabled={!isDirty || !isValid}
               >
                 Create Account
               </button>

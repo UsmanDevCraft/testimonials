@@ -2,21 +2,30 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/auth/useLogin";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { loginSchema } from "../../schemas/auth/loginSchema";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Login = () => {
   const navigate = useNavigate();
   const { mutate: loginMutate } = useLogin();
-
-  const [creds, setCreds] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
-  const fetchLogin = async (e) => {
-    e.preventDefault();
-    loginMutate(creds);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+    mode: "onBlur",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-  const onChange = (e) => {
-    setCreds({ ...creds, [e.target.name]: e.target.value });
+  const onSubmit = (data) => {
+    loginMutate(data);
   };
 
   const onClick = () => {
@@ -35,7 +44,7 @@ const Login = () => {
               Enter your credentials to access your dashboard.
             </p>
 
-            <form onSubmit={fetchLogin}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4">
                 <label
                   htmlFor="email"
@@ -45,13 +54,16 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
-                  className="form-control form-control-custom"
+                  className={`form-control form-control-custom ${
+                    errors.email ? "is-invalid" : ""
+                  }`}
                   id="email"
-                  name="email"
                   placeholder="name@example.com"
-                  onChange={onChange}
-                  required
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <div className="invalid-feedback">{errors.email.message}</div>
+                )}
               </div>
               <div className="mb-5">
                 <label
@@ -60,15 +72,15 @@ const Login = () => {
                 >
                   Password
                 </label>
-                <div className="d-flex">
+                <div className="input-group">
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="form-control form-control-custom"
+                    className={`form-control form-control-custom ${
+                      errors.password ? "is-invalid" : ""
+                    }`}
                     id="password"
-                    name="password"
                     placeholder="••••••••"
-                    onChange={onChange}
-                    required
+                    {...register("password")}
                   />
                   <button
                     type="button"
@@ -77,11 +89,17 @@ const Login = () => {
                   >
                     {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                   </button>
+                  {errors.password && (
+                    <div className="invalid-feedback d-block">
+                      {errors.password.message}
+                    </div>
+                  )}
                 </div>
               </div>
               <button
                 type="submit"
                 className="btn btn-primary-gradient w-100 py-3 mb-4"
+                disabled={!isDirty || !isValid}
               >
                 Sign In
               </button>
