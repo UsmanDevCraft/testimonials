@@ -8,7 +8,6 @@ export const useCreateSpace = () => {
   const mutation = useMutation({
     mutationFn: createSpace,
     onSuccess: (data) => {
-      localStorage.setItem("spaceToken", data.savedSpace.spaceToken);
       showAlert(data.message || "Space created successfully!", "success");
     },
     onError: (error) => {

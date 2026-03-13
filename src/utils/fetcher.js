@@ -6,7 +6,6 @@ export const fetcher = async (endpoint, options = {}) => {
   const headers = {
     "Content-Type": "application/json",
     "auth-token": localStorage.getItem("token") || "",
-    "space-token": localStorage.getItem("spaceToken") || "",
     ...options.headers, // Allow overriding headers if needed
   };
 

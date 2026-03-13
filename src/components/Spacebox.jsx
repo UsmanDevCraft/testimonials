@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 const Spacebox = ({ spaces }) => {
   const navigate = useNavigate();
 
-  const onClick = (space) => {
-    localStorage.setItem("spaceToken", space.spaceToken);
+  const onClick = () => {
     navigate("/spacepage");
   };
 
@@ -27,7 +26,7 @@ const Spacebox = ({ spaces }) => {
                   </span>
                 </div>
                 <h6 className="text-secondary small mb-3 fw-bold opacity-75">
-                  {space.headerTitle}
+                  {space.spaceDesc}
                 </h6>
                 <div className="bg-white bg-opacity-5 p-3 rounded-3 mb-2">
                   <p
