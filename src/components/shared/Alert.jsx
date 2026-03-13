@@ -5,7 +5,7 @@ import {
   AiFillInfoCircle,
   AiFillExclamationCircle,
 } from "react-icons/ai";
-import "../styles/Alert.css";
+import "../../styles/Alert.css";
 
 const Alert = ({ message, type = "info", onClose }) => {
   const [isVisible, setIsVisible] = useState(true);

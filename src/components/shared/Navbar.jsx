@@ -1,7 +1,15 @@
 import { NavLink, Link } from "react-router-dom";
 import { AiTwotoneLike } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login", { replace: true });
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg glass-nav py-3">
@@ -32,16 +40,35 @@ const Navbar = () => {
                   Dashboard
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link nav-link-custom me-3" to="/login">
-                  Login
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link nav-link-custom me-3" to="/signup">
-                  Signup
-                </NavLink>
-              </li>
+              {!isAuthenticated ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink
+                      className="nav-link nav-link-custom me-3"
+                      to="/login"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="nav-link nav-link-custom me-3"
+                      to="/signup"
+                    >
+                      Signup
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item">
+                  <button
+                    className="nav-link nav-link-custom me-3"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </li>
+              )}
             </ul>
             <div className="d-flex">
               <Link to="/home" className="btn btn-primary-gradient px-4">

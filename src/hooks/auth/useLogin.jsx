@@ -10,7 +10,6 @@ export const useLogin = () => {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      console.log("Login successful!", data);
       localStorage.setItem("token", data.authToken);
       showAlert(
         data.message || "Login was Successfull, HAPPY HACKING!",
@@ -19,7 +18,6 @@ export const useLogin = () => {
       navigate("/home");
     },
     onError: (error) => {
-      console.error(error.message);
       showAlert(error.message || "Something went wrong", "error");
     },
   });

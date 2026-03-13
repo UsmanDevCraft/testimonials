@@ -8,7 +8,6 @@ const SpacePage = () => {
   const { data: reviews, isLoading } = useGetReviews();
 
   // Create the URL with the spaceToken
-  // const reviewUrl = `https://client-testimonial.vercel.app/?spaceToken=${spaceToken}`;
   const reviewUrl = `https://client-testimonial.vercel.app/?spaceToken=${encodeURIComponent(spaceToken)}&authToken=${encodeURIComponent(authToken)}`;
 
   return (

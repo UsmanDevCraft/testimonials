@@ -10,21 +10,15 @@ export const useSignup = () => {
   const mutation = useMutation({
     mutationFn: signup,
     onSuccess: (data) => {
-      console.log("Signup successful!", data);
       localStorage.setItem("token", data.authToken);
-      showAlert(
-        data.message ||
-          "Account Signed In Successfully, Login to move further.",
-        "success",
-      );
-      navigate("/login");
+      showAlert(data.message || "Account Signed In Successfully", "success");
+      navigate("/home");
     },
     onError: (error) => {
       showAlert(
         error.message || "Account already exists, try another please.",
         "error",
       );
-      console.error(error.message);
     },
   });
 
