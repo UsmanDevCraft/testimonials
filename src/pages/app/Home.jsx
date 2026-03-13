@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
-import { useGetSpaces } from "../../hooks/app/useSpaces";
+import { useGetSpaces } from "../../hooks/app/space/useSpaces";
 import Spaces from "../../components/Spaces";
 import PlanOverview from "../../components/PlanOverview";
 

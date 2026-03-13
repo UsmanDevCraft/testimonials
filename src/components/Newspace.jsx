@@ -1,4 +1,4 @@
-import { useCreateSpace } from "../hooks/app/useCreateSpace";
+import { useCreateSpace } from "../hooks/app/space/useCreateSpace";
 import { spaceSchema } from "../schemas/app/spaceSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
