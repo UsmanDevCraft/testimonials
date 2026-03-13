@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import Spacebox from "../../components/Spacebox";
-import { CgCamera } from "react-icons/cg";
-import { FaRegSmile } from "react-icons/fa";
-import { IoBagHandleSharp } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import { useGetSpaces } from "../../hooks/app/useSpaces";
+import Spaces from "../../components/Spaces";
+import PlanOverview from "../../components/PlanOverview";
 
 const Home = () => {
   const { data: spacesData, isLoading } = useGetSpaces();
@@ -30,97 +28,13 @@ const Home = () => {
             </Link>
           </header>
 
-          {/* Overview Stats */}
-          <section className="mb-5">
-            <h2 className="fs-4 fw-bold mb-4 opacity-75">Overview</h2>
-            <div className="row g-4">
-              <div className="col-md-4">
-                <div className="card-premium p-4 d-flex align-items-center gap-4">
-                  <div className="feature-icon mb-0 flex-shrink-0">
-                    <CgCamera />
-                  </div>
-                  <div>
-                    <p className="text-secondary small mb-1">Total Videos</p>
-                    <h3 className="fw-bold mb-0">0</h3>
-                  </div>
-                </div>
-              </div>
+          <div className="d-flex flex-column gap-4">
+            {/* Overview Stats */}
+            <PlanOverview />
 
-              <div className="col-md-4">
-                <div className="card-premium p-4 d-flex align-items-center gap-4">
-                  <div
-                    className="feature-icon mb-0 flex-shrink-0"
-                    style={{
-                      background: "rgba(0, 210, 255, 0.1)",
-                      color: "var(--accent-secondary)",
-                    }}
-                  >
-                    <FaRegSmile />
-                  </div>
-                  <div>
-                    <p className="text-secondary small mb-1">Video Credits</p>
-                    <h3 className="fw-bold mb-0">0</h3>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4">
-                <div className="card-premium p-4 d-flex align-items-center gap-4">
-                  <div
-                    className="feature-icon mb-0 flex-shrink-0"
-                    style={{
-                      background: "rgba(255, 107, 107, 0.1)",
-                      color: "#ff6b6b",
-                    }}
-                  >
-                    <IoBagHandleSharp />
-                  </div>
-                  <div>
-                    <p className="text-secondary small mb-1">Current Plan</p>
-                    <h3 className="fw-bold mb-0">Free Plan</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Spaces Section */}
-          <section>
-            <div className="d-flex justify-content-between align-items-end mb-4">
-              <h2 className="fs-4 fw-bold mb-0 opacity-75">Your Spaces</h2>
-              <span className="text-secondary small">
-                {spacesData?.data?.length} space(s) active
-              </span>
-            </div>
-
-            {isLoading ? (
-              <div className="d-flex justify-content-center py-5">
-                <div className="spinner-border text-primary" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </div>
-              </div>
-            ) : (
-              <div className="spaces-list mb-4">
-                {spacesData?.data?.length > 0 ? (
-                  <div className="row g-4">
-                    <Spacebox spaces={spacesData?.data} />
-                  </div>
-                ) : (
-                  <div className="card-premium p-5 text-center border-dashed">
-                    <p className="text-secondary mb-4">
-                      You haven&apos;t created any spaces yet.
-                    </p>
-                    <Link
-                      to="/newspace"
-                      className="btn btn-outline-light border-secondary"
-                    >
-                      Create your first space
-                    </Link>
-                  </div>
-                )}
-              </div>
-            )}
-          </section>
+            {/* Spaces Section */}
+            <Spaces spacesData={spacesData} isLoading={isLoading} />
+          </div>
         </div>
       </div>
     </>
