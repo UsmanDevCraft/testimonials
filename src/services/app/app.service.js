@@ -14,6 +14,19 @@ export const getSpace = () => {
   return fetcher(APP.SPACE.GET_SPACE, { method: "GET" });
 };
 
+// UPDATE Space
+export const updateSpace = ({ id, payload }) => {
+  return fetcher(APP.SPACE.UPDATE_SPACE(id), {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+};
+
+// DELETE Space
+export const deleteSpace = (id) => {
+  return fetcher(APP.SPACE.DELETE_SPACE(id), { method: "DELETE" });
+};
+
 // POST Review
 export const createReview = (payload) => {
   return fetcher(APP.REVIEWS.CREATE_REVIEW, {

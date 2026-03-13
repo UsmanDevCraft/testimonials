@@ -25,7 +25,7 @@ const Spacebox = ({ spaces }) => {
                     Active
                   </span>
                 </div>
-                <h6 className="text-secondary small mb-3 fw-bold opacity-75">
+                <h6 className="text-secondary small mb-3 fw-bold">
                   {space.spaceDesc}
                 </h6>
                 <div className="bg-white bg-opacity-5 p-3 rounded-3 mb-2">
@@ -42,7 +42,7 @@ const Spacebox = ({ spaces }) => {
                     className="rounded-circle bg-success shadow-success"
                     style={{ width: "8px", height: "8px" }}
                   ></div>
-                  <span className="text-secondary small opacity-50">
+                  <span className="text-secondary small">
                     Collecting reviews
                   </span>
                 </div>

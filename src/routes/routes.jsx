@@ -8,6 +8,8 @@ export const APP = {
   SPACE: {
     GET_SPACE: "/newspace/getspace",
     CREATE_SPACE: "/newspace/createspace",
+    DELETE_SPACE: (id) => `/newspace/deletespace/${id}`,
+    UPDATE_SPACE: (id) => `/newspace/updatespace/${id}`,
   },
   REVIEWS: {
     GET_REVIEW: "/reviews/getreview",
