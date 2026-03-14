@@ -1,6 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import { AiTwotoneLike } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import ConfirmModal from "./ConfirmModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -8,8 +10,12 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.clear();
+    setIsModalOpen(false);
     navigate("/login", { replace: true });
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg glass-nav py-3">
@@ -63,7 +69,7 @@ const Navbar = () => {
                 <li className="nav-item">
                   <button
                     className="nav-link nav-link-custom me-3"
-                    onClick={handleLogout}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     Logout
                   </button>
@@ -78,6 +84,16 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      {isModalOpen && (
+        <ConfirmModal
+          isOpen={isModalOpen}
+          title="Logout"
+          description="Are you sure you want to logout?"
+          onConfirm={handleLogout}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </>
   );
 };
