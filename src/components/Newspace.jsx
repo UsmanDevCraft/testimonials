@@ -1,14 +1,24 @@
+import { useEffect } from "react";
 import { useCreateSpace } from "../hooks/app/space/useCreateSpace";
 import { spaceSchema } from "../schemas/app/spaceSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useParams } from "react-router-dom";
+import { useGetSpaceById } from "../hooks/app/space/useSpace";
+import { useUpdateSpace } from "../hooks/app/space/useUpdateSpace";
 
 const Newspace = () => {
+  const { id } = useParams();
   const { mutate } = useCreateSpace();
+  const { mutate: updateSpaceMutation } = useUpdateSpace();
+
+  const { data } = useGetSpaceById(id);
+  const isUpdateData = !!(id && data?.data);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isDirty, isValid },
   } = useForm({
     resolver: yupResolver(spaceSchema),
@@ -20,13 +30,29 @@ const Newspace = () => {
     },
   });
 
+  useEffect(() => {
+    if (isUpdateData) {
+      reset({
+        spaceName: data?.data?.spaceName || "",
+        spaceDesc: data?.data?.spaceDesc || "",
+        customMessage: data?.data?.customMessage || "",
+      });
+    }
+  }, [isUpdateData, data, reset]);
+
   const onSubmit = (data) => {
-    mutate(data);
+    if (id) {
+      updateSpaceMutation({ id, data });
+    } else {
+      mutate(data);
+    }
   };
 
   return (
     <div className="container">
-      <h3 className="text-center mt-4">Create a new Space</h3>
+      <h3 className="text-center mt-4">
+        {isUpdateData ? "Update this" : "Create a new"} Space
+      </h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
@@ -95,7 +121,7 @@ const Newspace = () => {
           className="btn btn-primary"
           disabled={!isDirty || !isValid}
         >
-          Submit
+          {isUpdateData ? "Update" : "Submit"}
         </button>
       </form>
     </div>

@@ -62,7 +62,13 @@ const Spacebox = ({ spaces }) => {
                     </span>
                   </div>
                   <div className="d-flex gap-2">
-                    <button className="btn btn-outline-light border-secondary">
+                    <button
+                      className="btn btn-outline-light border-secondary"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/editspace/${space._id}`);
+                      }}
+                    >
                       <FaPen />
                     </button>
                     <button

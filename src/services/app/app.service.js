@@ -14,6 +14,11 @@ export const getSpace = () => {
   return fetcher(APP.SPACE.GET_SPACE, { method: "GET" });
 };
 
+// Get Space By ID
+export const getSpaceById = (id) => {
+  return fetcher(APP.SPACE.GET_SPACE_BY_ID(id), { method: "GET" });
+};
+
 // UPDATE Space
 export const updateSpace = ({ id, payload }) => {
   return fetcher(APP.SPACE.UPDATE_SPACE(id), {
