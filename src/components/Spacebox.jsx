@@ -1,7 +1,21 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaPen, FaTrash } from "react-icons/fa";
+import ConfirmModal from "./shared/ConfirmModal";
+import { useDeleteSpace } from "../hooks/app/space/useDeleteSpace";
 
 const Spacebox = ({ spaces }) => {
   const navigate = useNavigate();
+  const { mutate: deleteSpaceMutation } = useDeleteSpace();
+
+  const [selectedSpace, setSelectedSpace] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleDeleteSpace = () => {
+    if (!selectedSpace._id) return;
+    deleteSpaceMutation(selectedSpace._id);
+    setIsDeleteModalOpen(false);
+  };
 
   const onClick = () => {
     navigate("/spacepage");
@@ -37,14 +51,31 @@ const Spacebox = ({ spaces }) => {
                       "No custom message set for this space."}
                   </p>
                 </div>
-                <div className="mt-3 d-flex align-items-center gap-2">
-                  <div
-                    className="rounded-circle bg-success shadow-success"
-                    style={{ width: "8px", height: "8px" }}
-                  ></div>
-                  <span className="text-secondary small">
-                    Collecting reviews
-                  </span>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="mt-3 d-flex align-items-center gap-2">
+                    <div
+                      className="rounded-circle bg-success shadow-success"
+                      style={{ width: "8px", height: "8px" }}
+                    ></div>
+                    <span className="text-secondary small">
+                      Collecting reviews
+                    </span>
+                  </div>
+                  <div className="d-flex gap-2">
+                    <button className="btn btn-outline-light border-secondary">
+                      <FaPen />
+                    </button>
+                    <button
+                      className="btn btn-outline-light border-secondary"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedSpace(space);
+                        setIsDeleteModalOpen(true);
+                      }}
+                    >
+                      <FaTrash />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -77,6 +108,16 @@ const Spacebox = ({ spaces }) => {
             </button>
           </div>
         </div>
+      )}
+
+      {isDeleteModalOpen && (
+        <ConfirmModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={handleDeleteSpace}
+          title="Delete Space"
+          description={`Are you sure you want to delete ${selectedSpace?.spaceName}?`}
+        />
       )}
     </>
   );

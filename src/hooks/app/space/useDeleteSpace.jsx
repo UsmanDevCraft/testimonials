@@ -2,12 +2,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteSpace } from "../../../services/app/app.service";
 import { useAlert } from "../../../context/alertsContext";
 
-export const useDeleteSpace = (id) => {
+export const useDeleteSpace = () => {
   const queryClient = useQueryClient();
   const { showAlert } = useAlert();
 
   return useMutation({
-    mutationFn: deleteSpace(id),
+    mutationFn: (id) => deleteSpace(id),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["get-space"] });
       showAlert(data.message || "Space deleted successfully!", "success");
