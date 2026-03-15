@@ -7,6 +7,7 @@ export const AUTH = {
 export const APP = {
   SPACE: {
     GET_SPACE: "/newspace/getspace",
+    GET_SPACE_BY_ID: (id) => `/newspace/getSpaceById/${id}`,
     CREATE_SPACE: "/newspace/createspace",
     DELETE_SPACE: (id) => `/newspace/deletespace/${id}`,
     UPDATE_SPACE: (id) => `/newspace/updatespace/${id}`,

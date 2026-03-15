@@ -1,5 +1,5 @@
 import Reviewbox from "../../components/Reviewbox";
-import { useGetReviews } from "../../hooks/app/useReviews";
+import { useGetReviews } from "../../hooks/app/reviews/useReviews";
 
 const SpacePage = () => {
   const authToken = localStorage.getItem("token");

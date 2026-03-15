@@ -26,6 +26,7 @@ const App = () => {
           <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
             <Route path="/newspace" element={<Newspace />} />
+            <Route path="/editspace/:id" element={<Newspace />} />
             <Route path="/spacepage" element={<SpacePage />} />
             <Route path="/addreview" element={<Addreview />} />
           </Route>

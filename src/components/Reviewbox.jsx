@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useDeleteReview } from "../hooks/app/useDeleteReview";
+import { useDeleteReview } from "../hooks/app/reviews/useDeleteReview";
 import {
   FaTrash,
   FaUserSecret,

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { createSpace } from "../../services/app/app.service";
-import { useAlert } from "../../context/alertsContext";
+import { createSpace } from "../../../services/app/app.service";
+import { useAlert } from "../../../context/alertsContext";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 
